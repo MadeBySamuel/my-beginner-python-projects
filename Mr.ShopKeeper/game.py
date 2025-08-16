@@ -1,14 +1,15 @@
+
 import time
 
-import utils
-from login import Login
+from signup import login
+
 
 def menu():
     menus = {"Start", "Settings", "Quit"}
     while True:
         press = input("Press: ")
         if press == "Start":
-            intro()
+            play()
         elif press == "Settings":
             pass
         elif press == "Quit":
@@ -17,30 +18,7 @@ def menu():
             print("Invalid input")
 
 
-def HowAreYou():
-    print("How are you?")
-
-def login():
-
-    print("Hello :)")
-    time.sleep(1)
-    print("I am Pete")
-    time.sleep(1)
-    username = input("What is your name? ")
-    login = Login(username)
-    print("Welcome " + login.username)
-
-
-    time.sleep(1)
-    print(".")
-    utils.clear()
-
-
-
-
-
-def intro():
-
+def play():
 
     difficulty = [
         {"diff": "easy", "money": 2500}, {"diff": "medium", "money": 1500}, {"diff": "hard", "money": 750},
@@ -48,10 +26,11 @@ def intro():
 
     print("Welcome to Shopkeeper")
     time.sleep(1.5)
-    print("First of all i would like to thank you for giving chance for my ass game <3")
+    print("First of all, I would like to thank you for giving chance for my game <3")
     time.sleep(2)
+
     while True:
-        print("First things first I want you to choose your own difficulty: ")
+        print("First things first, I want you to choose your own difficulty: ")
 
         for i in difficulty:
             print(f"{i['diff']} {i['money']}")
@@ -70,11 +49,6 @@ def intro():
             continue
         else:
             break
-
-if __name__ == "__main__":
-    login()
-
-
 
 
 
