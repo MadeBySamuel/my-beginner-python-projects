@@ -1,9 +1,43 @@
+from xml.sax.handler import property_encoding
 
 from config import *
 
+
+class BankAccount:
+    def __init__(self, money):
+        self.money = money
+
+    @property
+    def balance(self):
+        return self.money
+
+    def deposit(self, amount):
+        if amount < 0:
+            raise ValueError("You cannot add negative amounts of money")
+        else:
+            self.money += amount
+
+    def withdraw(self, amount):
+        if amount < 0:
+            raise ValueError("You cannot withdraw negative amounts of money")
+        if self.money <= amount:
+            raise ValueError("You don't have enough money")
+        else:
+            self.money -= amount
+
+
+
+
+class Login:
+    def __init__(self, username, email, password):
+        self.username = username
+        self.email = email
+        self.password = password
+
 class Player():
-    def __init__(self, money = DEFAULT_MONEY, xp = DEFAULT_XP, level = DEFAULT_LEVEL, storage = DEFAULT_STORAGE):
-        self._money = money
+    def __init__(self, login, bankaccount, xp = DEFAULT_XP, level = DEFAULT_LEVEL, storage = DEFAULT_STORAGE):
+        self.BankAccount = bankaccount
+        self.Login = login
         self._xp = xp
         self._level = level
         self._storage = storage
@@ -33,7 +67,7 @@ class Player():
     def level(self, value):
         self._level = value
 
-    @propery
+    @property
     def storage(self):
        return self._storage
 
@@ -56,7 +90,7 @@ class Player():
         print(f"You leveled up ! Your current level now: {self.level}")
 
     def earn_storage(self, amount):
-        self.storage += amount
-        print(f"You expanded your Shop storage. Your new Storage: {self.storage}")
+        self._storage += amount
+        print(f"You expanded your Shop storage. Your new Storage: {self._storage}")
     
-    
+ # player = Player(Login) <--
